@@ -8,6 +8,11 @@ export function removeToDoItem(itemIndex) {
     return { type: 'REMOVE_TODO_ITEM', data: itemIndex }
 }
 
+export function completedToDoItem(itemIndex) {
+    return { type: 'COMPLETED_TODO', data: itemIndex }
+}
+
 export function getTodoList() {
     return { type: 'GET_TODO_LIST' }
 }
+

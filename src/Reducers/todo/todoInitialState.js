@@ -1,5 +1,5 @@
-const initialState ={
-    todoList: [],
+const initialState = {
+    todoList: []
 }
 
 export default initialState

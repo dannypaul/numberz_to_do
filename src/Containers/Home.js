@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { addTodoItem } from '../Reducers/todo/todoActions'
+import { addTodoItem, removeToDoItem, completedToDoItem } from '../Reducers/todo/todoActions'
 import TodoInput from '../Components/TodoInput'
+import ToDoItem from '../Components/ToDoItem'
 
 
 function mapStateToProps(state) {
@@ -13,24 +14,24 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators({ addTodoItem }, dispatch)
+        actions: bindActionCreators({ addTodoItem, removeToDoItem, completedToDoItem }, dispatch)
     }
 }
-
 
 class Home extends Component {
 
     render() {
         return (
             <div>
-                <p>Awesome ToDo</p>
+                <div>Awesome ToDo</div>
                 <TodoInput submitToDoHandler={this.props.actions.addTodoItem} />
                 {
                     this.props.todoList.map((item, index) => {
+
                         return (
-                            <p key={index}>
-                                {item}
-                            </p>
+                            <div key={index}>
+                                <ToDoItem removeHandler={this.props.actions.removeToDoItem} statusHandler={this.props.actions.completedToDoItem} item={item} index={index} />
+                            </div>
                         );
                     })
                 }
